@@ -33,7 +33,7 @@ export default function LoginPage({
     >
       <div
         className="
-        bg-[#FEFEFE] lg:size-[32rem] shadow-xl rounded-2xl flex justify-center items-center flex-col gap-4
+        bg-[#FEFEFE] lg:size-[32rem] shadow-xl/30 rounded-2xl flex justify-center items-center flex-col gap-4
         "
         style={{
           padding: "10px",
@@ -43,12 +43,12 @@ export default function LoginPage({
       >
         <div className="flex flex-col justify-center items-center">
           <div
-            className="shadow-md border-4 rounded-full"
+            className="shadow-md border-2 rounded-full #151515"
             style={{
               padding: "10px",
             }}
           >
-            <BsBinocularsFill className="size-9" />
+            <BsBinocularsFill className="size-8 motion-safe:animate-pulse" />
           </div>
           <h2>
             <b>Welcome Back</b>
@@ -56,13 +56,13 @@ export default function LoginPage({
           <p>Por favor, selecione seu método de login</p>
         </div>
         <div className="flex flex-row place-content-evenly gap-10">
-          <div className="flex size-[3rem] border shadow-md rounded-lg justify-center items-center">
+          <div className="flex size-[4rem] shadow-xl/30 rounded-lg justify-center items-center">
             <BsGoogle />
           </div>
-          <div className="flex size-[3rem] border shadow-md rounded-lg justify-center items-center">
+          <div className="flex size-[4rem] shadow-xl/30 rounded-lg justify-center items-center">
             <BsLinkedin />
           </div>
-          <div className="flex size-[3rem] border shadow-md rounded-lg justify-center items-center">
+          <div className="flex size-[4rem] shadow-xl/30 rounded-lg justify-center items-center">
             <BsApple />
           </div>
         </div>
@@ -96,18 +96,19 @@ export default function LoginPage({
             </a>
           </div>
         </div>
-        <button className="bg-red-500 text-white p-4 rounded">
-          Test Button
-        </button>
         <button
           onClick={handleFormSubmit}
           className={
-            "w-80 h-10 cursor-pointer bg-black flex items-center justify-center text-center"
+            "w-80 h-10 cursor-pointer bg-sgiBlack hover:bg-sgiHoverBlack rounded-xl shadow-xl/30 flex items-center transition duration-200 ease-linear justify-center text-center animate-pulse text-white"
           }
           type="submit"
           aria-busy={isLoading}
         >
-          {isLoading ? <BsSlashCircleFill /> : "Logar"}
+          {isLoading ? (
+            <BsSlashCircleFill className="animate-spin size-5" />
+          ) : (
+            "Logar"
+          )}
         </button>
       </div>
     </div>

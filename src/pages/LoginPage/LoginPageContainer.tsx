@@ -24,9 +24,9 @@ export default function LoginPageContainer() {
         { auth: { username: username, password: passwd } }
       )
       .then((response) => response.data)
-      .then((token) => {
-        localStorage.setItem("auth/token", token.token);
-        console.log(token.token);
+      .then((data: { token: string }) => {
+        backApi.defaults.headers.common["Authorization"] =
+          `Token ${data.token}`;
       })
       .catch((error) => {
         console.log(error);

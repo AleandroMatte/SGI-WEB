@@ -21,7 +21,7 @@ export default function DefaultInput({
     <div className="flex flex-col">
       <label className="text-sm">{label}</label>
       <input
-        className="inset-ring inset-ring-indigo-500 min-h-[40px] rounded-[2vw] border"
+        className="inset-ring inset-ring-sgiBlack min-h-[40px] rounded-[2vw] border"
         style={{
           padding: "5px",
           borderRadius: "10px",
