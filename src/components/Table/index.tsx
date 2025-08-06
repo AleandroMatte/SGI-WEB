@@ -1,5 +1,5 @@
 import { AgGridReact } from "ag-grid-react";
-import { themeQuartz } from "ag-grid-community";
+import { themeBalham } from "ag-grid-community";
 
 interface AgTableProps {
   rowData: object[];
@@ -17,7 +17,7 @@ export default function AgTable({ rowData, columnDefinition }: AgTableProps) {
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefinition}
-        theme={themeQuartz}
+        theme={themeBalham}
       />
     </div>
   );

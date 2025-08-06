@@ -1,6 +1,7 @@
 import "./App.css";
-import UserListPageContainer from "./pages/UserListPage/UserListPageContainer";
+import CreateUserPageContainer from "./pages/CreateUserPage/CreateUserPageContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import UserListPageContainer from "./pages/UserListPage/UserListPageContainer";
 
 const queryClient = new QueryClient();
 
@@ -9,6 +10,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <UserListPageContainer />
+        {/* <CreateUserPageContainer /> */}
       </QueryClientProvider>
     </>
   );

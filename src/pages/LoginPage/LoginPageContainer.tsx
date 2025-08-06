@@ -1,4 +1,4 @@
-import LoginPage from ".";
+import LoginPage from "./LoginPage";
 import { useState } from "react";
 import { backApi } from "../../services/api";
 

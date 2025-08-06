@@ -7,10 +7,12 @@ interface DefaultInputProps {
   placeholderText: string;
   type: AllowedInputTypes;
   value: string;
+  className?: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function DefaultInput({
+  className,
   label,
   placeholderText,
   type,
@@ -18,7 +20,7 @@ export default function DefaultInput({
   onChangeHandler,
 }: DefaultInputProps) {
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${className}`}>
       <label className="text-sm">{label}</label>
       <input
         className="inset-ring inset-ring-sgiBlack min-h-[40px] rounded-[2vw] border"
