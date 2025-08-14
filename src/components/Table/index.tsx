@@ -13,12 +13,15 @@ interface AgTableProps {
 export default function AgTable({ rowData, columnDefinition }: AgTableProps) {
   return (
     // Data Grid will fill the size of the parent container
-    <div style={{ height: 500 }}>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefinition}
-        theme={themeBalham}
-      />
-    </div>
+    <AgGridReact
+      rowData={rowData}
+      columnDefs={columnDefinition}
+      theme={themeBalham}
+      gridOptions={{
+        autoSizeStrategy: {
+          type: "fitCellContents",
+        },
+      }}
+    />
   );
 }

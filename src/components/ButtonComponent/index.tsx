@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 interface DefaultButtonComponent extends ComponentProps<"button"> {
   className: string;
   label: string;
@@ -8,6 +7,7 @@ interface DefaultButtonComponent extends ComponentProps<"button"> {
 export default function DefaultButton({
   className,
   label,
+  children,
   ...buttonProps
 }: DefaultButtonComponent) {
   return (

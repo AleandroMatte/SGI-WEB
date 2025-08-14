@@ -1,19 +1,26 @@
 import { BiCamera, BiSolidUser } from "react-icons/bi";
 import DefaultInputComponent2 from "../../components/InputComponentV2";
-import type { UserDataInterface } from "./CreateUserPageContainer";
+import type {
+  UserDataInterface,
+  UserGroupsData,
+} from "./CreateUserPageContainer";
 import DefaultButton from "../../components/ButtonComponent";
 import type React from "react";
 import type { FormEvent } from "react";
 
 interface CreateUserPage {
   userData: UserDataInterface;
-  handleUserDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleUserDataChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<boolean | void>;
+  groupsData?: UserGroupsData[];
 }
 export default function CreateUserPage({
   userData,
   handleUserDataChange,
   handleSubmit,
+  groupsData,
 }: CreateUserPage) {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -60,9 +67,6 @@ export default function CreateUserPage({
               <p className="whitespace-nowrap overflow-hidden text-ellipsis">
                 Cargo: {userData.position}
               </p>
-              <p className="whitespace-nowrap overflow-hidden text-ellipsis">
-                Departamento: {userData.departament_id}
-              </p>
             </div>
           </div>
           <div className="w-[10%] flex flex-col  items-center justify-center">
@@ -73,6 +77,7 @@ export default function CreateUserPage({
             <div className=" grid grid-cols-2 gap-5 justify-center">
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
+                value={userData.first_name}
                 type="text"
                 name="first_name"
                 placeholder="Nome"
@@ -82,6 +87,7 @@ export default function CreateUserPage({
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
                 type="text"
+                value={userData.last_name}
                 name="last_name"
                 placeholder="Sobrenome"
                 className=" w-[100%] h-10 border-[0px] inset-ring"
@@ -90,6 +96,7 @@ export default function CreateUserPage({
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
                 type="email"
+                value={userData.email}
                 name="email"
                 placeholder="Email"
                 className=" w-[100%] h-10 border-[0px] inset-ring"
@@ -97,6 +104,7 @@ export default function CreateUserPage({
               />
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
+                value={userData.username}
                 type="text"
                 placeholder="Login"
                 name="username"
@@ -106,6 +114,7 @@ export default function CreateUserPage({
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
                 type="password"
+                value={userData.password}
                 name="password"
                 placeholder="Senha"
                 className=" w-[100%] h-10 border-[0px] inset-ring"
@@ -114,21 +123,31 @@ export default function CreateUserPage({
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
                 name="position"
+                value={userData.position}
                 type="position"
                 placeholder="Função"
                 className=" w-[100%] h-10 border-[0px] inset-ring"
                 label="Cargo"
               />
+              <label>
+                Departamento{" "}
+                <select
+                  value={userData.groups}
+                  onChange={handleUserDataChange}
+                  className="block inset-ring inset-ring-sgiBlack p-[5px] w-[100%]"
+                  name="groups"
+                >
+                  <option value={""}>Selecione Grupo</option>
+                  {groupsData?.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
               <DefaultInputComponent2
                 onChange={handleUserDataChange}
-                type="number"
-                name="departament_id"
-                placeholder="Departamento"
-                className=" w-[100%] h-10 border-[0px] inset-ring"
-                label="Departamento"
-              />
-              <DefaultInputComponent2
-                onChange={handleUserDataChange}
+                value={userData.birth_date}
                 type="date"
                 name="birth_date"
                 placeholder="Data de Nascimento"
@@ -136,7 +155,7 @@ export default function CreateUserPage({
                 label="Data de Nascimento"
               />
               <DefaultButton
-                className="h-10 col-span-2"
+                className="h-10 col-start-2"
                 label="Criar Usuário"
               />
             </div>
